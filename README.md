@@ -12,6 +12,6 @@ Basic Real time chat apllication
 * Heroku
 ---
 
-#Deployed
+# Deployed
 Deployed at [https://toyo-node-chat-app.herokuapp.com](https://toyo-node-chat-app.herokuapp.com)
 --
