@@ -1,6 +1,7 @@
 # websocket-chat-app
 
 Basic Real time chat apllication
+
 ---
 
 # Technology Used
