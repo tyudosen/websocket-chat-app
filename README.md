@@ -11,8 +11,17 @@ Basic Real time chat apllication
 * HTML
 * CSS
 * Heroku
+
 ---
 
 # Deployed
 Deployed at [https://toyo-node-chat-app.herokuapp.com](https://toyo-node-chat-app.herokuapp.com)
---
+
+---
+
+# Instructions
+
+Enter display name and join a room. 
+You can now chat in real-time with others in the room.
+
+---
