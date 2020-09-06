@@ -11,6 +11,7 @@ Basic Real time chat apllication
 * HTML
 * CSS
 * Heroku
+* Websockets
 
 ---
 
