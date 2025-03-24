@@ -1,9 +1,9 @@
 const socket = io()
 
 
-const $formOne = document.querySelector('#formOne')
-const $$formOneInput = $formOne.querySelector('input')
-const $formOneButton = $formOne.querySelector('button')
+const $chatForm = document.querySelector('#formOne')
+const $$chatFormInput = $chatForm.querySelector('input')
+const $submitChatButton = $chatForm.querySelector('button')
 const $sendLocationButton = document.querySelector('#sendLocation')
 const $messages = document.querySelector('#messages')
 
@@ -12,8 +12,16 @@ const messageTemplate = document.querySelector('#message-template').innerHTML
 const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
-//options
+// Get username and room that were submited from index.html from url and parse with Qs
 const {username, room } = Qs.parse(location.search,{ ignoreQueryPrefix: true })
+
+// Join chat app. if error, redirect to home page
+socket.emit('join', { username, room }, (error) =>{
+    if(error){
+        alert(error)
+        location.href = '/'
+    }
+})
 
 const autoScroll = () => {
     //New msg element
@@ -76,17 +84,17 @@ socket.on('roomData', ({room,users}) =>{
 
 
 
-$formOne.addEventListener('submit', (e)=>{
+$chatForm.addEventListener('submit', (e)=>{
     e.preventDefault();
 
-    $formOneButton.setAttribute('disabled', 'disabled');
+    $submitChatButton.setAttribute('disabled', 'disabled');
 
     const text = e.target.elements.textArea.value
     
     socket.emit('sendMessage',text, (error)=>{
-        $formOneButton.removeAttribute('disabled')
-        $$formOneInput.value = ''
-        $$formOneInput.focus()
+        $submitChatButton.removeAttribute('disabled')
+        $$chatFormInput.value = ''
+        $$chatFormInput.focus()
 
         if(error){
             return console.log(error);
@@ -123,9 +131,4 @@ $sendLocationButton.addEventListener('click', ()=>{
     })
 })
 
-socket.emit('join', { username, room }, (error) =>{
-    if(error){
-        alert(error)
-        location.href = '/'
-    }
-})
+
